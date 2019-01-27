@@ -7,6 +7,7 @@ class DatePickerExample extends StatefulWidget {
 
 class DatePickerExampleState extends State<DatePickerExample> {
   String dbDate;
+  String dbTime;
 
   @override
   void initState() {
@@ -14,9 +15,11 @@ class DatePickerExampleState extends State<DatePickerExample> {
 
     //TODO: Let's Assume we Got this Date From DB;
     dbDate = "20190129";
+    dbTime = "20:10";
     // TODO: Check accepts Date format from : https://stackoverflow.com/a/51063116/8623062
   }
 
+  //TODO : Handle on Cancel Picking .. throws Exception
   _selectNewDate(BuildContext context) async {
     var x = await showDatePicker(
         context: context,
@@ -30,12 +33,35 @@ class DatePickerExampleState extends State<DatePickerExample> {
     });
   }
 
+  //TODO : Handle on Cancel Picking .. throws Exception
+  _selectNewTime(BuildContext context) async {
+//    print(dbTime.substring(0, 2));
+//    print(dbTime.substring(1, 4));
+    var x = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay(
+            hour: int.parse(dbTime.substring(0, 2)),
+            minute: int.parse(dbTime.substring(3, 5))));
+
+    setState(() {
+      dbTime = x.hour.toString() + ":" + x.minute.toString();
+      // TODO: Check other "To" functions to store the date in preferred format
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Center(
-          child: InkWell(
+      appBar: AppBar(
+        title: Text("Date Picker Example"),
+        centerTitle: true,
+        automaticallyImplyLeading: true,
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          InkWell(
             onTap: () => _selectNewDate(context),
             child: Text(
               "Current Selected Date is : $dbDate \n\n"
@@ -44,6 +70,18 @@ class DatePickerExampleState extends State<DatePickerExample> {
               textAlign: TextAlign.center,
             ),
           ),
-        ));
+          Divider(),
+          InkWell(
+            onTap: () => _selectNewTime(context),
+            child: Text(
+              "Current Selected TIME is : $dbTime \n\n"
+                  " Click On Text To Change Time",
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
