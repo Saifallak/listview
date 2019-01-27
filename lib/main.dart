@@ -28,44 +28,48 @@ class _MyHomePageState extends State<MyHomePage> {
     listOfCards
       ..add(
         BeautyCard(
-          key: Key("cardIndex_${listOfCards.length}"),
-          // TODO: Important Key to manage this card ,, delete/modify/...etc
-          // TODO: make key pattern of whatever you want,, this is just basic one works for this situation
-          // TODO: if using firebase ,, you make want to set the key to same as firebase item key?!
-          // TODO: Try it
+          key: Key("uniqueCardID_12"),
+          // TODO: Let's assume that all cards have unique key got from DB
           title: "Intro to Diving",
           icon: Icons.beach_access,
+          onPressed: () => deleteListItem("uniqueCardID_12"),
         ),
       )
       ..add(
         BeautyCard(
-          key: Key("cardIndex_${listOfCards.length}"),
+          key: Key("uniqueCardID_1xxaa"),
+          // TODO: Let's assume that all cards have unique key got from DB
           title: "Intro to Sleeping",
           icon: Icons.airline_seat_individual_suite,
+          onPressed: () => deleteListItem("uniqueCardID_1xxaa"),
         ),
       )
       ..add(
         BeautyCard(
-          key: Key("cardIndex_${listOfCards.length}"),
+          key: Key("uniqueCardID_12311111"),
+          // TODO: Let's assume that all cards have unique key got from DB
           title: "Intro into flutter",
           icon: Icons.flag,
+          onPressed: () => deleteListItem("uniqueCardID_12311111"),
         ),
       )
       ..add(
         BeautyCard(
-          key: Key("cardIndex_${listOfCards.length}"),
+          key: Key("uniqueCardID_1xxxx11"),
+          // TODO: Let's assume that all cards have unique key got from DB
           title: "Intro to android",
           icon: Icons.android,
+          onPressed: () => deleteListItem("uniqueCardID_1xxxx11"),
         ),
       );
   }
 
-  void deleteListItem(Key keyOfItem) {
+  void deleteListItem(String keyOfItem) {
     listOfCards
         .forEach((f) => debugPrint("Key in Before List : ${f.key.toString()}"));
     debugPrint("Deleting Key : ${keyOfItem.toString()}");
     setState(() {
-      listOfCards.removeWhere((itemCard) => itemCard.key == keyOfItem);
+      listOfCards.removeWhere((itemCard) => itemCard.key == Key(keyOfItem));
     });
     listOfCards.forEach(
         (f) => debugPrint("Key in List After Deleting : ${f.key.toString()}"));
@@ -84,10 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               title: listOfCards[index],
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () => deleteListItem(listOfCards[index].key),
-              ),
             );
           }), // This trailing comma makes auto-formatting nicer for build methods.
     );

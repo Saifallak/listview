@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class BeautyCard extends StatelessWidget {
   final String title;
   final IconData icon;
-
+  final VoidCallback onPressed;
 
   const BeautyCard({
     @required Key key,
     @required this.title,
     @required this.icon,
+    @required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -63,6 +64,10 @@ class BeautyCard extends StatelessWidget {
                 ),
               )
             ],
+          ),
+          trailing: IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: onPressed,
           ),
         ),
       ),
