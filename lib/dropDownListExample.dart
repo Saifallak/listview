@@ -60,6 +60,8 @@ class _DropDownListExampleState extends State<DropDownListExample> {
               child: SizedBox(
                 // TODO: this is a quick fix from : https://stackoverflow.com/a/50345779/8623062
                 // TODO: He said ,, wrap your text in sized box and give it a width ,, hmm ,, 80% of screen is good i think
+                // TODO: Another Sol.
+                // TODO: You can also use a ConstrainedBox instead of a SizedBox if you want to be able to set min and max widths instead of having a fixed width.
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Text(
                   map["name"],
