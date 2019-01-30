@@ -1,16 +1,19 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class DropDownListExample extends StatefulWidget {
+  String value;
+
+  DropDownListExample(this.value);
+
   @override
-  _DropDownListExampleState createState() => _DropDownListExampleState();
+  _DropDownListExampleState createState() => _DropDownListExampleState(value);
 }
 
 class _DropDownListExampleState extends State<DropDownListExample> {
   // TODO: Update 30 Jan
   // TODO: Your "value" for DropdownButton should be set to 'null' or or be one from the values list.
   // TODO: Means ,, the values here are 0 , 1 , 2 , 3 ... etc
+  _DropDownListExampleState(this._mySelection);
 
   String _mySelection;
   List<Map> _myJson = [
@@ -25,12 +28,12 @@ class _DropDownListExampleState extends State<DropDownListExample> {
     super.initState();
 
     //TODO: Let's make a count down so after screen init with 3sec we get more data ?
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        //this word from data base return
-        _mySelection = "0"; // TODO : THis Means select id 0 => selection1
-      });
-    });
+//    Future.delayed(const Duration(seconds: 1), () {
+//      setState(() {
+//        //this word from data base return
+//        _mySelection = "0"; // TODO : THis Means select id 0 => selection1
+//      });
+//    });
   }
 
 // TODO : STill bug in flutter https://github.com/flutter/flutter/issues/9211
