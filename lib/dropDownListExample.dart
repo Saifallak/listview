@@ -8,11 +8,16 @@ class DropDownListExample extends StatefulWidget {
 }
 
 class _DropDownListExampleState extends State<DropDownListExample> {
+  // TODO: Update 30 Jan
+  // TODO: Your "value" for DropdownButton should be set to 'null' or or be one from the values list.
+  // TODO: Means ,, the values here are 0 , 1 , 2 , 3 ... etc
+
   String _mySelection;
   List<Map> _myJson = [
-    // TODO: Remove Comments if you want initial Data
-//    {"id": 0, "name": "<>"},
-//    {"id": 1, "name": "Test Practice"}
+    {"id": 0, "name": "selection1"},
+    {"id": 1, "name": "some selection yaay"},
+    {"id": 2, "name": "selection3"},
+    {"id": 3, "name": "Test Practice"}
   ];
 
   @override
@@ -20,17 +25,10 @@ class _DropDownListExampleState extends State<DropDownListExample> {
     super.initState();
 
     //TODO: Let's make a count down so after screen init with 3sec we get more data ?
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 1), () {
       setState(() {
-        _myJson
-          ..add({"id": 2, "name": "hel123ld2"})
-          ..add({"id": 3, "name": "he1232"})
-          ..add({"id": 4, "name": "hel12"})
-          ..add({
-            "id": 5,
-            "name":
-                "heaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaa22222"
-          });
+        //this word from data base return
+        _mySelection = "0"; // TODO : THis Means select id 0 => selection1
       });
     });
   }
@@ -56,7 +54,9 @@ class _DropDownListExampleState extends State<DropDownListExample> {
           },
           items: _myJson.map((Map map) {
             return DropdownMenuItem<String>(
-              value: map["id"].toString(),
+              value: map["id"]
+                  .toString(), // TODO :Your "value" for DropdownButton should be set to 'null' or or be one from the values list.
+              // TODO: THis is the value ^^
               child: SizedBox(
                 // TODO: this is a quick fix from : https://stackoverflow.com/a/50345779/8623062
                 // TODO: He said ,, wrap your text in sized box and give it a width ,, hmm ,, 80% of screen is good i think
