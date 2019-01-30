@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/list': (BuildContext context) => ListViewExample(),
         '/date': (BuildContext context) => DatePickerExample(),
-        '/drop': (BuildContext context) => DropDownListExample("2"),
+        '/drop': (BuildContext context) => DropDownListExample(null),
       },
     );
   }
